@@ -1,0 +1,40 @@
+MaterialDef Bike {
+    MaterialParameters {
+        
+        Texture2D Texture
+        Float Alpha : 1.0
+        
+        // lighting
+        Int NumberOfLights
+        Vector4Array LightColor
+        Vector3Array LightPosition
+        Float Falloff : 1.0
+        Float Intensity : 0.3
+        
+        // skinning
+        Int NumberOfBones
+        Matrix4Array BoneMatrices
+
+    }
+    Technique {
+        VertexShader GLSL330 GLSL120 GLSL100 : Shaders/bike.vert
+        FragmentShader GLSL330 GLSL120 GLSL100 : Shaders/bike.frag
+        WorldParameters {
+            WorldViewProjectionMatrix
+        }
+        Defines {
+            NB_LIGHTS : NumberOfLights
+            NUM_BONES : NumberOfBones
+        }
+    }
+    Technique Glow {
+        VertexShader GLSL330 GLSL120 GLSL100 : Shaders/bike.vert
+        FragmentShader GLSL330 GLSL120 GLSL100 : Shaders/bike-glow.frag
+        WorldParameters {
+            WorldViewProjectionMatrix
+        }
+        Defines {
+            NUM_BONES : NumberOfBones
+        }
+    }
+}

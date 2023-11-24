@@ -1,0 +1,43 @@
+MaterialDef Tile {
+    MaterialParameters {
+        Texture2D Texture
+        Boolean UseInstancing
+        Vector2 Gradient1
+        Vector2 Gradient2
+        Vector3 Disrupt
+    }
+    Technique {
+        VertexShader   GLSL330 GLSL120 GLSL100 : Shaders/tile.vert
+        FragmentShader GLSL330 GLSL120 GLSL100 : Shaders/tile.frag
+        WorldParameters {
+            WorldViewProjectionMatrix
+            WorldMatrix
+            ViewProjectionMatrix
+            ViewMatrix
+            Time
+        }
+        Defines {
+            TEXTURE : Texture
+            USE_INSTANCING : UseInstancing
+            FADE : Gradient1
+            DISRUPT : Disrupt
+        }
+    }
+    Technique Glow {
+        VertexShader   GLSL330 GLSL120 GLSL100 : Shaders/tile.vert
+        FragmentShader GLSL330 GLSL120 GLSL100 : Shaders/tile.frag
+        WorldParameters {
+            WorldViewProjectionMatrix
+            WorldMatrix
+            ViewProjectionMatrix
+            ViewMatrix
+            Time
+        }
+        Defines {
+            TEXTURE : Texture
+            USE_INSTANCING : UseInstancing
+            FADE : Gradient1
+            DISRUPT : Disrupt
+        }
+    }
+}
